@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
+import 'package:quicken_app/src/screens/login_screen.dart';
 
 class SignupScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -10,6 +12,25 @@ class SignupScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Sign up Page"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text(
+              "Go Back",
+              style: new TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -49,7 +70,7 @@ class SignupScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               RaisedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (validateEmail(emailController.text.toString()) == false &&
                       validatePassword(passwordController.text.toString()) ==
                           false) {
@@ -81,6 +102,18 @@ class SignupScreen extends StatelessWidget {
                       gravity: ToastGravity.CENTER,
                       backgroundColor: Colors.orange,
                       textColor: Colors.white,
+                    );
+                  } else {
+                    var box = await Hive.openBox("user");
+                    box.put('email', emailController.text.toString());
+                    box.put('password', passwordController.text.toString());
+                    print("email: " + box.get('email'));
+                    print("password: " + box.get('password'));
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
                     );
                   }
                 },
