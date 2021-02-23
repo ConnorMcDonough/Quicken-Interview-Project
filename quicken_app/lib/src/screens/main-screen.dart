@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quicken_app/bloc/webbloc_bloc.dart';
 import 'package:quicken_app/repos/repository.dart';
 import 'package:quicken_app/src/data_models/data_model.dart';
+import 'package:quicken_app/src/screens/web_view.dart';
 import 'package:quicken_app/src/widgets/data_item_card.dart';
 import 'login_screen.dart';
 
@@ -71,7 +72,13 @@ class MainScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return Container(
               child: InkWell(
-                  onTap: () async {},
+                  onTap: () async {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                WebViewBrowser(data: data[index])));
+                  },
                   child: DataItemCard(context, data[index])),
             );
           }),

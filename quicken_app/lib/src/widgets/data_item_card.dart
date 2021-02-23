@@ -31,6 +31,7 @@ class DataItemCard extends StatelessWidget {
               textAlign: TextAlign.left,
               style: new TextStyle(
                 fontSize: MediaQuery.of(context).size.width / 22,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -41,6 +42,7 @@ class DataItemCard extends StatelessWidget {
               textAlign: TextAlign.left,
               style: new TextStyle(
                 fontSize: MediaQuery.of(context).size.width / 22,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
