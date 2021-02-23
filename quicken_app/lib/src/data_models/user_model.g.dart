@@ -13,6 +13,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
   @override
   UserModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
+    // ignore: unused_local_variable
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };

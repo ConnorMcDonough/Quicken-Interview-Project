@@ -9,5 +9,6 @@ class API {
     } catch (error) {
       print("Could not fetch JSON");
     }
+    return (null);
   }
 }
