@@ -4,7 +4,6 @@ import 'package:quicken_app/bloc/webbloc_bloc.dart';
 import 'package:quicken_app/repos/repository.dart';
 import 'package:quicken_app/src/data_models/data_model.dart';
 import 'package:quicken_app/src/widgets/data_item_card.dart';
-
 import 'login_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -71,7 +70,9 @@ class MainScreen extends StatelessWidget {
           itemCount: data?.length ?? 0,
           itemBuilder: (context, index) {
             return Container(
-              child: DataItemCard(context, data[index]),
+              child: InkWell(
+                  onTap: () async {},
+                  child: DataItemCard(context, data[index])),
             );
           }),
     );
